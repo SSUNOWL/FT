@@ -150,23 +150,9 @@ const DeveloperPage = () => {
                     ))}
                 </div>
             </div>
-
+            <div className="scroll-container">
             <div className="content-area">
                 <div className="left-panel">
-                    <div className="profile-card">
-                        {selectedKeyword ? (
-                            <>
-                                <h2>{selectedKeyword.kor}</h2>
-                                <p className="keyword-eng">{selectedKeyword.eng}</p>
-                            </>
-                        ) : (
-                            <>
-                                {/* <img src={developerIcon} alt="Developer Icon" className="profile-icon" /> */}
-                                <h2>개발</h2>
-                                <p>Developer</p>
-                            </>
-                        )}
-                    </div>
                     <div className="strength-list">
                         {currentData.keywords.map(keyword => (
                             <span 
@@ -183,6 +169,7 @@ const DeveloperPage = () => {
                 <div className="right-panel">
                     {getRightPanelContent()}
                 </div>
+            </div>
             </div>
         </div>
     );
