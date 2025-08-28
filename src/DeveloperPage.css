@@ -1,4 +1,4 @@
-/* 기존 CSS 스타일 유지 */
+/* 수정된 CSS 스타일 */
 :root {
   --green: #4CAF50;
   --orange: #FF9800;
@@ -6,46 +6,53 @@
   --blue: #2196F3;
 }
 
+/* 전체 페이지 컨테이너 */
 .developer-page-wide {
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
-  /* 너비를 더 넓게 조정하여 가로로 긴 형태를 만듭니다. */
-  
-  max-width: 1400px;
-  min-height: 900px;
-  margin: 20px auto;
+  width: 96vw;
+  height: 96vh;
+  margin: 2vh 2vw;
+  padding: 0;
   border: 1px solid #ddd;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* 상단 헤더 */
 .top-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 20px 40px;
+  padding: 30px 40px;
   transition: background-color 0.3s ease;
+  flex-shrink: 0;
 }
 
 .main-title {
-  font-size: 28px;
+  font-size: 40px;
   margin: 0;
   flex-grow: 1;
   text-align: left;
+  min-width: 300px;
 }
 
 .header-tabs {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  flex-shrink: 0;
 }
 
 .tab {
-  padding: 10px 20px;
+  padding: 15px 25px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 18px;
   transition: background-color 0.3s;
   border: 2px solid transparent;
 }
@@ -59,16 +66,22 @@
   border-color: #fff;
 }
 
+/* 콘텐츠 영역 */
 .content-area {
   display: flex;
   flex-grow: 1;
+  overflow: hidden;
 }
 
+/* 왼쪽 패널 */
 .left-panel {
-  width: 350px; /* 왼쪽 패널의 너비도 조금 늘려 시각적으로 안정감을 줍니다. */
+  width: 300px;
   padding: 30px;
   background-color: #f7f7f7;
   border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 .profile-card {
@@ -81,39 +94,41 @@
   border: 2px solid var(--theme-color);
   transition: border-color 0.3s;
   text-align: center;
-  min-height: 150px;
+  min-height: auto;
   justify-content: center;
 }
 
-.profile-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 10px;
+.profile-card h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 5px 0;
 }
 
-.profile-card h2, .profile-card p {
-  margin: 5px 0;
+.profile-card p {
+  font-size: 16px;
+  margin: 3px 0;
 }
 
 .keyword-eng {
   font-size: 14px;
   color: #666;
-  margin-top: 0;
 }
 
+/* 키워드 리스트 */
 .strength-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-top: 20px;
   text-align: center;
 }
 
 .strength-list span {
   background-color: #e0e0e0;
-  padding: 8px 5px;
+  padding: 10px 5px;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: bold;
   color: #444;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -130,27 +145,33 @@
   font-weight: bold;
 }
 
+/* 오른쪽 패널 */
 .right-panel {
   flex: 1;
   padding: 30px;
-  /* 오른쪽 패널이 남은 공간을 전부 차지하도록 flex: 1을 유지합니다. */
+  /* overflow-y: auto; */
 }
 
 .main-info-section, .performance-section {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .main-info-section h3, .performance-section h3 {
   border-bottom: 2px solid var(--theme-color);
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 27px;
+  font-weight: bold;
   transition: border-color 0.3s;
 }
 
 .trait-item {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 15px;
+  padding-left: 25px;
+  margin-bottom: 5px; /* 줄 간격 축소 */
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 1.1; /* 줄 간격 축소 */
 }
 
 .bullet-point {
@@ -172,7 +193,19 @@
 .performance-list li {
   position: relative;
   padding-left: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* 원래 값으로 복원 */
+  font-size: 23px;
+  line-height: 1.3; /* 원래 값으로 복원 */
+}
+
+/* 체크 아이콘이 있는 줄의 폰트 굵기 */
+.performance-list li:has(.check-icon) {
+  font-weight: bold;
+}
+
+/* 하이픈 아이콘이 있는 줄의 폰트 굵기 */
+.performance-list li:has(.hyphen-icon) {
+  font-weight: normal;
 }
 
 .check-icon {
