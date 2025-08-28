@@ -1,0 +1,196 @@
+/* 기존 CSS 스타일 유지 */
+:root {
+  --green: #4CAF50;
+  --orange: #FF9800;
+  --purple: #9C27B0;
+  --blue: #2196F3;
+}
+
+.developer-page-wide {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* 너비를 더 넓게 조정하여 가로로 긴 형태를 만듭니다. */
+  
+  max-width: 1400px;
+  min-height: 900px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 20px 40px;
+  transition: background-color 0.3s ease;
+}
+
+.main-title {
+  font-size: 28px;
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.header-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 2px solid transparent;
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab.active {
+  background-color: var(--theme-color);
+  border-color: #fff;
+}
+
+.content-area {
+  display: flex;
+  flex-grow: 1;
+}
+
+.left-panel {
+  width: 350px; /* 왼쪽 패널의 너비도 조금 늘려 시각적으로 안정감을 줍니다. */
+  padding: 30px;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #eff3ff;
+  border-radius: 8px;
+  border: 2px solid var(--theme-color);
+  transition: border-color 0.3s;
+  text-align: center;
+  min-height: 150px;
+  justify-content: center;
+}
+
+.profile-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.profile-card h2, .profile-card p {
+  margin: 5px 0;
+}
+
+.keyword-eng {
+  font-size: 14px;
+  color: #666;
+  margin-top: 0;
+}
+
+.strength-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.strength-list span {
+  background-color: #e0e0e0;
+  padding: 8px 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.strength-list span:hover {
+  background-color: var(--theme-color);
+  color: white;
+}
+
+.strength-list span.active {
+  background-color: var(--theme-color);
+  color: white;
+  font-weight: bold;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 30px;
+  /* 오른쪽 패널이 남은 공간을 전부 차지하도록 flex: 1을 유지합니다. */
+}
+
+.main-info-section, .performance-section {
+  margin-bottom: 30px;
+}
+
+.main-info-section h3, .performance-section h3 {
+  border-bottom: 2px solid var(--theme-color);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+.trait-item {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.bullet-point {
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 8px;
+  background-color: var(--theme-color);
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.performance-list {
+  list-style: none;
+  padding: 0;
+}
+
+.performance-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+
+.check-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--theme-color);
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.hyphen-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--theme-color);
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
