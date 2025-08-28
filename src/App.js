@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './DeveloperPage.css';
-// import developerIcon from './developer-icon.png';
 import { developerData } from './developerData';
 
 const tabData = {
@@ -65,20 +64,34 @@ const tabData = {
 };
 
 const DeveloperPage = () => {
-    const [selectedTab, setSelectedTab] = useState('relationships');
+    const [selectedTab, setSelectedTab] = useState('strategy');
     const [selectedKeyword, setSelectedKeyword] = useState(null);
+    const rightPanelRef = useRef(null); // useRef 훅을 사용하여 right-panel에 대한 참조를 만듭니다.
 
     useEffect(() => {
         const firstKeyword = tabData[selectedTab].keywords[0];
         setSelectedKeyword(firstKeyword);
     }, [selectedTab]);
 
+    // selectedKeyword가 변경될 때마다 스크롤을 맨 위로 올립니다.
+    useEffect(() => {
+        if (selectedKeyword) {
+            // right-panel의 스크롤 위치를 맨 위로 올립니다.
+            if (rightPanelRef.current) {
+                rightPanelRef.current.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [selectedKeyword]);
+
     const currentData = tabData[selectedTab];
     const themeColor = currentData.color;
 
     const mainTitle = selectedKeyword
         ? `${selectedKeyword.kor} (${selectedKeyword.eng})`
-        : '개발 (Developer)';
+        : '미래지향';
 
     const handleKeywordClick = (keyword) => {
         setSelectedKeyword(keyword);
@@ -87,7 +100,6 @@ const DeveloperPage = () => {
     const getRightPanelContent = () => {
         const keywordKey = selectedKeyword?.kor;
         
-        // developerData에 해당 키워드가 있는지 확인
         const contentData = developerData[keywordKey];
 
         if (contentData) {
@@ -124,7 +136,6 @@ const DeveloperPage = () => {
                 </>
             );
         } else {
-            // developerData에 없는 키워드는 기본 설명 표시
             return (
                 <div className="main-info-section keyword-explanation">
                     <h3>{selectedKeyword?.kor}에 대한 설명</h3>
@@ -150,7 +161,6 @@ const DeveloperPage = () => {
                     ))}
                 </div>
             </div>
-            <div className="scroll-container">
             <div className="content-area">
                 <div className="left-panel">
                     <div className="strength-list">
@@ -165,11 +175,10 @@ const DeveloperPage = () => {
                         ))}
                     </div>
                 </div>
-
-                <div className="right-panel scroll-hide">
+                {/* ref를 right-panel에 연결합니다. */}
+                <div className="right-panel" ref={rightPanelRef}>
                     {getRightPanelContent()}
                 </div>
-            </div>
             </div>
         </div>
     );
