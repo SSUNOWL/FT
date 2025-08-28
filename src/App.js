@@ -166,7 +166,7 @@ const DeveloperPage = () => {
                     </div>
                 </div>
 
-                <div className="right-panel">
+                <div className="right-panel scroll-hide">
                     {getRightPanelContent()}
                 </div>
             </div>

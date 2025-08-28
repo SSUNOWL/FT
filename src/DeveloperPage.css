@@ -10,15 +10,14 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* PC 환경에서 전체 스크롤을 비활성화 */
+  font-size: 16px;
 }
 
 .developer-page-wide {
   display: flex;
   flex-direction: column;
   max-width: 1400px;
-  height: 100vh; /* 뷰포트 높이에 맞춰 페이지 높이 고정 */
-  margin: 0 auto;
+  margin: 20px auto;
   border: 1px solid #ddd;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -34,11 +33,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  flex-shrink: 0; /* 헤더 높이 고정 */
+  flex-shrink: 0;
 }
 
 .main-title {
-  font-size: 28px;
+  font-size: 2.2rem;
   margin: 0;
   flex-grow: 1;
   text-align: left;
@@ -50,12 +49,13 @@ body {
 }
 
 .tab {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
   border: 2px solid transparent;
+  font-size: 1.1rem;
 }
 
 .tab:hover {
@@ -70,17 +70,27 @@ body {
 .content-area {
   display: flex;
   flex-grow: 1;
-  height: 100%; /* 부모 높이(100vh)에서 헤더 높이를 제외한 나머지 공간을 차지 */
 }
 
+/* PC 환경 전용 스타일 (768px보다 큰 해상도) */
 .left-panel {
-  width: 350px;
+  flex: 1;
   padding: 30px;
   background-color: #f7f7f7;
   border-right: 1px solid #ddd;
-  overflow-y: auto; /* 독립 스크롤 활성화 */
+  /* PC에서는 패널 자체에 스크롤을 적용 */
+  overflow-y: auto;
 }
 
+.right-panel {
+  flex: 2;
+  padding: 30px;
+  /* PC에서는 패널 자체에 스크롤을 적용 */
+  overflow-y: auto;
+  height:70vh;
+}
+
+/* 아래는 기존 코드 유지 */
 .profile-card {
   display: flex;
   flex-direction: column;
@@ -105,8 +115,16 @@ body {
   margin: 5px 0;
 }
 
+.profile-card h2 {
+  font-size: 2rem;
+}
+
+.profile-card p {
+  font-size: 1.1rem;
+}
+
 .keyword-eng {
-  font-size: 14px;
+  font-size: 1rem;
   color: #666;
   margin-top: 0;
 }
@@ -121,9 +139,9 @@ body {
 
 .strength-list span {
   background-color: #e0e0e0;
-  padding: 8px 5px;
+  padding: 10px 8px;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 1.1rem;
   color: #444;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -140,12 +158,6 @@ body {
   font-weight: bold;
 }
 
-.right-panel {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto; /* 독립 스크롤 활성화 */
-}
-
 .main-info-section, .performance-section {
   margin-bottom: 30px;
 }
@@ -155,12 +167,14 @@ body {
   padding-bottom: 5px;
   margin-bottom: 20px;
   transition: border-color 0.3s;
+  font-size: 1.8rem;
 }
 
 .trait-item {
   position: relative;
   padding-left: 20px;
   margin-bottom: 15px;
+  font-size: 1.1rem;
 }
 
 .bullet-point {
@@ -183,6 +197,7 @@ body {
   position: relative;
   padding-left: 30px;
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 
 .check-icon {
@@ -205,35 +220,113 @@ body {
   transition: color 0.3s;
 }
 
+
 /* 모바일용 스타일 (최대 너비 768px 이하) */
 @media (max-width: 768px) {
-  body {
-    overflow: auto; /* 모바일에서는 전체 스크롤 허용 */
-  }
+  /* 모바일용으로 재정의된 부분 */
   .developer-page-wide {
-    width: 90%;
-    height: auto;
+    width: 100%;
+    /* 뷰포트 높이에 맞춤 */
+    height: 100vh;
     min-height: auto;
     box-shadow: none;
-    margin: 10px auto;
+    margin: 0;
+    border: none;
   }
+
+  .top-header {
+    padding: 15px 20px;
+    flex-direction: row;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+  }
+  
+  .main-title {
+    font-size: 1.5rem;
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+
+  .header-tabs {
+    gap: 5px;
+  }
+
+  .tab {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
   .content-area {
-    flex-direction: column;
-    height: auto; /* 모바일에서는 높이 고정 해제 */
+    flex-direction: row;
+    /* 헤더 높이를 뺀 나머지 공간을 차지하도록 설정 */
+    height: calc(100vh - 58px); 
+    overflow: hidden; /* 패널 외부에 스크롤이 생기지 않도록 함 */
   }
-  .left-panel, .right-panel {
-    width: 100%;
+
+  .left-panel {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    border-bottom: none;
+    /* 패널 자체에 스크롤을 적용 */
+    overflow-y: auto;
+    height: 70vh;
+  }
+  
+  .right-panel {
+    flex: 2;
     padding: 20px;
     border-right: none;
-    border-bottom: 1px solid #ddd;
-    overflow-y: visible; /* 독립 스크롤 비활성화 */
+    border-bottom: none;
+    /* 패널 자체에 스크롤을 적용 */
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .profile-card {
+    padding: 10px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .profile-card p {
+    font-size: 1rem;
+  }
+  
+  .profile-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .strength-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .strength-list span {
+    font-size: 1rem;
+  }
+  
+  .main-info-section h3, .performance-section h3 {
+    font-size: 1.4rem;
+  }
+  
+  .trait-item, .performance-list li {
+    font-size: 1rem;
   }
 }
 
-.scroll-container {
-  /* 헤더를 제외한 나머지 공간을 모두 차지하도록 설정 */
-  height: calc(100vh - 100px); 
-  overflow-y: auto;
-  /* flex-grow를 사용해 content-area가 남은 공간을 모두 차지하게 함 */
-  flex-grow: 1;
+
+
+.scroll-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  overflow: scroll; /* 스크롤바를 숨기려면 필요 */
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
